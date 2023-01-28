@@ -31,7 +31,7 @@ class ArtistService(
     suspend fun getArtists(name: String): List<Artist> {
         val cachedArtists: List<String> = redisTemplate.opsForList().range("artists:$name", 0, 49)!!
         if (cachedArtists.isNotEmpty()) {
-            logger.info { "Cache value for key \"artists:$name\" is $cachedArtists" }
+            logger.debug { "Cache value for key \"artists:$name\" is $cachedArtists" }
             redisTemplate.expire("artists:$name", artistCacheTTL)
             return cachedArtists.map { it.cacheValueToArtist() }
         }

@@ -34,7 +34,7 @@ class AlbumService(
     suspend fun getTopAlbums(artistAmgId: Long): List<Album> {
         val cachedTopAlbums: List<String> = redisTemplate.opsForList().range("topAlbums:artist:$artistAmgId", 0, 49)!!
         if (cachedTopAlbums.isNotEmpty()) {
-            logger.info { "Cache value for key \"topAlbums:artist:$artistAmgId\" is $cachedTopAlbums" }
+            logger.debug { "Cache value for key \"topAlbums:artist:$artistAmgId\" is $cachedTopAlbums" }
             redisTemplate.expire("topAlbums:artist:$artistAmgId", albumCacheTtl)
             return cachedTopAlbums.map { it.cacheValueToAlbum() }
         }
