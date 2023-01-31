@@ -1,6 +1,6 @@
-# top-music-albums
+# music-album-search-engine
 
-It's a backend app which lets users query for artists, mark the favorite ones and check their top albums.
+It's a backend app which lets users query for artists, mark the favorite ones and check their top albums. It queries iTunes API to fetch artist and album data, HSQLDB to persist queried data and minimize queries made to external API and it also uses Redis cache to further improve performance.
 
 Prerequisites:
 * JDK 11 installed
